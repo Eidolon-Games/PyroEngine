@@ -3,7 +3,7 @@
 
 namespace PyroEngine
 {
-	FileWriter Logger::s_LogFile;
+	FileStreamer Logger::s_LogFile;
 	void (*Logger::s_LoggerFunctionCallback)(LoggerChannel, const std::string&) = nullptr;
 
 	void Logger::DecodeAndAppendLogArgument(std::vector<std::string>& strings)
@@ -26,7 +26,7 @@ namespace PyroEngine
 			if (ec)
 				return false;
 		}
-		bool success = s_LogFile.Open(path, true);
+		bool success = s_LogFile.Open(path);
 		return success;
 	}
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "PyroEngine/File/FileWriter.h"
+#include "PyroEngine/File/FileStreamer.h"
 #if defined PYRO_CONFIG_DEBUG
 #include <iostream>
 #endif
@@ -18,7 +18,7 @@ namespace PyroEngine
 	class Logger
 	{
 	private:
-		static FileWriter s_LogFile;
+		static FileStreamer s_LogFile;
 		static void (*s_LoggerFunctionCallback)(LoggerChannel, const std::string&);
 
 		template<typename T>
