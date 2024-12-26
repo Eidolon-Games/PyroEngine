@@ -23,7 +23,6 @@ namespace PyroEngine
 		}
 
 		ProcessorAnalyser::Analyse();
-		MathF::Init();
 		//Renderer::Init(); //Not here because for opengl you need to do it at window creation
 	}
 
