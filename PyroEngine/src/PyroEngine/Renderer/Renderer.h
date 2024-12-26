@@ -42,6 +42,8 @@ namespace PyroEngine
 		static void Init();
 		static void Terminate();
 
+		static void SetViewport(int x, int y, int width, int height);
+
 		static void ClearScreen(const Colour& colour);
 
 		static void BeginScene(const Camera& camera);

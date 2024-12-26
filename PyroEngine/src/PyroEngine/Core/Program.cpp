@@ -1,5 +1,6 @@
 #include "PyroEnginePCH.h"
 #include "Program.h"
+#include "PyroEngine/Renderer/Renderer.h"
 
 namespace PyroEngine
 {
@@ -26,7 +27,12 @@ namespace PyroEngine
 	{
 		OnProgramEvent(e);
 
-		if (e.GetEventType() == PyroEngine::EventType::WindowClosed)
+		if (e.GetEventType() == PyroEngine::EventType::WindowResized)
+		{
+			WindowResizedEvent& wre = (WindowResizedEvent&)e;
+			Renderer::SetViewport(0, 0, wre.GetWidth(), wre.GetHeight());
+		}
+		else if (e.GetEventType() == PyroEngine::EventType::WindowClosed)
 			Engine::StopRunning();
 	}
 

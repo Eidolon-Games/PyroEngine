@@ -137,6 +137,11 @@ namespace PyroEngine
 		s_RendererInitialised = false;
 	}
 
+	void Renderer::SetViewport(int x, int y, int width, int height)
+	{
+		s_GraphicsCommand->SetViewport(x, y, width, height);
+	}
+
 	void Renderer::ClearScreen(const Colour& colour)
 	{
 		s_GraphicsCommand->SetClearColour(colour.red, colour.green, colour.blue);
