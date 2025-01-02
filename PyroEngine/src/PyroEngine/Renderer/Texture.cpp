@@ -5,7 +5,7 @@
 
 namespace PyroEngine
 {
-	Texture* Texture::Create(const std::filesystem::path& filePath)
+	Texture* Texture::Create(const FilePath& filePath)
 	{
 		switch (GlobalSettings::s_GraphicsAPI)
 		{

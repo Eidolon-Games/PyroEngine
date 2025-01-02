@@ -1,5 +1,5 @@
 #pragma once
-#include <filesystem>
+#include "FilePath.h"
 #include <fstream>
 
 namespace PyroEngine
@@ -7,17 +7,17 @@ namespace PyroEngine
 	class FileStreamer
 	{
 	private:
-		std::filesystem::path m_FilePath; //The path to where the currently open file is on the host system
+		FilePath m_FilePath; //The path to where the currently open file is on the host system
 		std::fstream m_FileStream; //The output stream used to open, close and write to files
 	public:
 		FileStreamer();
 		~FileStreamer();
 
 		//Returns the absolute path of the currently open file. If no file is open, then it will return the current working directory
-		std::filesystem::path GetFilePath() const;
+		FilePath GetFilePath() const;
 
 		//Opens a file on the host system. An optional flag can be set if the file should be created if it doesnt already exist. If a file is already currently open then it will close that file before attempting to open the new one. The read/write indicator will be set at the very beginning of the file so that the next retrived byte will be the first one in the file and the next written byte will override the first one in the file. Returns whether or not the file has been successfully opened
-		bool Open(const std::filesystem::path& path, bool createIfDoesntExist = true);
+		bool Open(const FilePath& path, bool createIfDoesntExist = true);
 		//Closes the currently open file. If no file is open, then this function will not do anything
 		void Close();
 		//Returns whether or not a file is currently open

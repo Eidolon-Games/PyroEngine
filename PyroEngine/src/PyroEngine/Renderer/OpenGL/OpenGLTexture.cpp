@@ -5,7 +5,7 @@
 
 namespace PyroEngine
 {
-	OpenGLTexture::OpenGLTexture(const std::filesystem::path& filePath)
+	OpenGLTexture::OpenGLTexture(const FilePath& filePath)
 		: m_FilePath(filePath)
 	{
 		uint8_t* data = nullptr; //Here will be the data from the image file

@@ -13,19 +13,8 @@ namespace PyroEngine
 
 	bool Logger::TurnOnFileLogging()
 	{
-		std::error_code ec;
-		std::filesystem::path path = std::filesystem::absolute("PyroLog.txt", ec);
-		if (ec)
-			return false;
-		bool fileAlreadyExists = std::filesystem::exists(path, ec);
-		if (ec)
-			return false;
-		if (fileAlreadyExists)
-		{
-			std::filesystem::remove(path, ec);
-			if (ec)
-				return false;
-		}
+		FilePath path = "PyroLog.txt";
+		path.Delete();
 		bool success = s_LogFile.Open(path);
 		return success;
 	}

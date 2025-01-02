@@ -4,7 +4,7 @@
 namespace PyroEngine
 {
 	FileStreamer::FileStreamer()
-		: m_FilePath(std::filesystem::current_path()), m_FileStream()
+		: m_FilePath(), m_FileStream()
 	{
 	}
 
@@ -13,27 +13,27 @@ namespace PyroEngine
 		m_FileStream.close();
 	}
 
-	std::filesystem::path FileStreamer::GetFilePath() const
+	FilePath FileStreamer::GetFilePath() const
 	{
 		return m_FilePath;
 	}
 
-	bool FileStreamer::Open(const std::filesystem::path& path, bool createIfDoesntExist)
+	bool FileStreamer::Open(const FilePath& path, bool createIfDoesntExist)
 	{
 		m_FileStream.close();
-		m_FilePath = std::filesystem::absolute(path);
-		m_FileStream.open(m_FilePath, std::ios::in | std::ios::out | std::ios::binary | std::ios::ate);
+		m_FilePath = path;
+		m_FileStream.open(m_FilePath.GetStdPath(), std::ios::in | std::ios::out | std::ios::binary | std::ios::ate);
 		if (!m_FileStream.is_open())
 		{
 			if (createIfDoesntExist)
 			{
-				m_FileStream.open(m_FilePath, std::ios::out);
+				m_FileStream.open(m_FilePath.GetStdPath(), std::ios::out);
 				m_FileStream.close();
-				m_FileStream.open(m_FilePath, std::ios::in | std::ios::out | std::ios::binary | std::ios::ate);
+				m_FileStream.open(m_FilePath.GetStdPath(), std::ios::in | std::ios::out | std::ios::binary | std::ios::ate);
 			}
 			else
 			{
-				m_FilePath = std::filesystem::current_path();
+				m_FilePath = FilePath();
 				return false;
 			}
 		}
