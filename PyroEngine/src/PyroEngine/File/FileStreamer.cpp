@@ -405,4 +405,32 @@ namespace PyroEngine
 		}
 		return output;
 	}
+
+	uint8_t* FileStreamer::CopyIntoMemory(size_t* sizeOfAssignedMemoryBuffer)
+	{
+		if (sizeOfAssignedMemoryBuffer == nullptr)
+			return nullptr;
+
+		if (!IsOpen())
+		{
+			*sizeOfAssignedMemoryBuffer = 0;
+			return nullptr;
+		}
+
+		size_t positionBefore = GetPosition();
+		GoToEnd();
+		size_t fileSize = GetPosition() - positionBefore;
+		SeekPosition(positionBefore);
+		
+		if (fileSize == 0)
+		{
+			*sizeOfAssignedMemoryBuffer = 0;
+			return nullptr;
+		}
+
+		uint8_t* buffer = new uint8_t[fileSize];
+		m_FileStream.read(reinterpret_cast<char*>(buffer), fileSize);
+		*sizeOfAssignedMemoryBuffer = fileSize;
+		return buffer;
+	}
 }

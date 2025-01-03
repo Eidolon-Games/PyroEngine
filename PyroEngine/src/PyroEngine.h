@@ -3,6 +3,7 @@
 #pragma once
 
 //---CORE------------------------------------------------------------------
+#include "PyroEngine/Core/Compression.h"
 #include "PyroEngine/Core/Engine.h"
 #include "PyroEngine/Core/GlobalSettings.h"
 #include "PyroEngine/Core/Logger.h"

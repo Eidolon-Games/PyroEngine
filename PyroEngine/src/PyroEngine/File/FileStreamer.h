@@ -114,5 +114,8 @@ namespace PyroEngine
 		std::string ReadString(size_t length);
 		//Retrieves the next string from the current position within the file. This function will stop as soon as the end of the file is reached or until a null character has been reached. It will increment the current position within the file by the amount of characters retrieved
 		std::string ReadStringUntilNull();
+
+		//Copies the file contents (from the current position in the file to the end) into a memory buffer and returns a pointer to it (aswell as the size of the buffer)
+		uint8_t* CopyIntoMemory(size_t* sizeOfAssignedMemoryBuffer);
 	};
 }
